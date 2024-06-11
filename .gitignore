@@ -1,0 +1,5 @@
+# Build results
+site/
+
+#pycharm settings
+.idea

@@ -1,0 +1,53 @@
+site_name: 'SECU4 Off Car Systems'
+site_description: 'Documentation for SECU4 Off Car Systems'
+docs_dir: 'docs'
+repo_url: https://github.com/mat-docs/SECU4.Site
+site_url: https://atlas.mclarenapplied.com/secu4/
+
+theme:
+  name: 'material'
+  palette:
+    primary:  'teal'
+    accent:   'indigo'
+  custom_dir: 'overrides'
+  # assets/swoosh* is cached aggressively - rename if icons change
+  favicon:    'assets/swoosh-black/favicon.png'
+  logo:       'assets/swoosh-black/logo.png'
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - toc.integrate
+
+copyright: Copyright &copy; 2024 McLaren Applied Ltd.
+
+nav:
+  - ⇱ Docs Portal:                https://atlas.mclarenapplied.com/
+  - Overview:                     index.md
+  - Configuration Api:            configuration_api/index.md
+  - Stream API / Protocol:        stream_api/index.md
+  - Historical Data Storage:      historic_data/index.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - codehilite
+  - def_list
+  - footnotes
+  - toc:
+      permalink: "#"
+  - meta
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.tabbed
+  - pymdownx.snippets:
+      base_path: docs
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
