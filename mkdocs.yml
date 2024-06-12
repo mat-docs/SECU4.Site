@@ -40,7 +40,10 @@ copyright: Copyright &copy; 2024 McLaren Applied Ltd.
 nav:
   - ⇱ Docs Portal:                https://atlas.mclarenapplied.com/
   - Overview:                     index.md
-  - Configuration Api:            configuration_api/index.md
+  - Configuration Api:
+      - Overview:                 configuration_api/index.md
+      - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
+      - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
   - Stream API / Protocol:        stream_api/index.md
   - Historical Data Storage:      historic_data/index.md
 
