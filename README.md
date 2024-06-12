@@ -1,15 +1,16 @@
 # ATLAS Integration Guide
 
-URL: [atlas.mclarenapplied.com/integration/rta/sdk/](https://atlas.mclarenapplied.com/integration/rta/sdk/)  
-Hosting: [mclaren-rta.netlify.app](https://mclaren-rta.netlify.app/)
+[//]: # (TODO: Update once deployed on netlify)
+[//]: # (URL: [atlas.mclarenapplied.com/integration/rta/sdk/]&#40;https://atlas.mclarenapplied.com/integration/rta/sdk/&#41;  )
+[//]: # (Hosting: [mclaren-rta.netlify.app]&#40;https://mclaren-rta.netlify.app/&#41;)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/70188770-aad4-4cd1-addf-ce5a36b286e7/deploy-status)](https://app.netlify.com/sites/mclaren-rta/deploys)
+[//]: # ([![Netlify Status]&#40;https://api.netlify.com/api/v1/badges/70188770-aad4-4cd1-addf-ce5a36b286e7/deploy-status&#41;]&#40;https://app.netlify.com/sites/mclaren-rta/deploys&#41;)
 
 ## Setup
 
 Install Visual Studio Code.
 
-Install Python 3.7 or later, which should come with `pip`.
+Install Python 3.8, which should come with `pip`.
 
 From the project directory:
 
