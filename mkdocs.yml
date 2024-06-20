@@ -44,8 +44,14 @@ nav:
       - Overview:                 configuration_api/index.md
       - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
       - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
-  - Stream API / Protocol:        stream_api/index.md
-  - Historical Data Storage:      historic_data/index.md
+
+  - Stream API / Protocol:
+      - Overview:                     stream_api/index.md
+      - Stream API Container:         stream_api/server_container.md
+      - Windows service application:  stream_api/windows_service_application.md
+
+
+  - Historical Data Storage:         historic_data/index.md
 
 markdown_extensions:
   - abbr
