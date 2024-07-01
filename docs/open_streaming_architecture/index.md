@@ -1,5 +1,4 @@
 # Open Streaming Architecture
-
 A standard API to expose streaming data from SECU units and abstract away proprietary
 implementation details. Consumers of this API will be able to write software that 
 interfaces with any viewer, network protocol, or storage technology of their choice. 
@@ -8,16 +7,16 @@ This will be integrated with a protocol for streaming engineering (calibrated)
 telemetry, interoperating with ATLAS clients and the surrounding data processing 
 ecosystem.
  
-# Components
+## Components
 For the 2024 July milestone, 3 components are currently available for evaluation:
 
 1. Stream API server as docker image
 2. Stream API server as NuGet package
 3. Stream API client as NuGet package
 
-# Sample Implementation
+## Sample Implementation
 
-## Simple stream produce consumer
+### Simple stream produce consumer
 In this scenario, a custom data producer can publish data onto the Kafka broker via the
 Stream API client and the Stream API Container. 
 
