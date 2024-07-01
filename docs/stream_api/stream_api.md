@@ -1,18 +1,32 @@
 # Stream API
 
-The Stream API is responsible for publishing and consuming data from the Kafka broker.
-
-The Stream API consist of a server, and a client, with gRPC channel to communicate between the two.
+The Stream API is responsible for publishing and consuming data from the Kafka broker. Created under the gRPC framework,
+it allows clients to communicate to a server which handles the kafka communication.
 
 The server and the client can be deployed locally within the same application or the server can be deployed remotely 
 with the docker image provided.
 
+## Stream API Client
+
+C# libraries for the Stream API Client are compiled from the proto files, to facilitate deployment.
+
+`MA.Streaming.Proto.Client.Local` can be used in conjunction with `MA.Streaming.Proto.ServerComponent`. 
+
+`MA.Streaming.Proto.Client.Remote` can be used in conjunction with the [Stream API Server Container](./#stream-api-server-container).
+
+Given the API is created under the gRPC framework, it is possible to generate client and server classes in a language of
+your choice. 
+For details documentation of each of the RPC calls, refer to the [proto file]().
+
 ## Stream API Server Container
+
+The image for the Stream API Server is available on DockerHub as `mclarenapplied/streaming-proto-server-host` 
+
 ### Ports
-| Port  | Protocol | Usage                                               |
-|-------|----------|-----------------------------------------------------|
-| 13579 | gRPC     | Communication with Stream API Client                |  
-| 15379 | gRPC     | Remote Key Generator service                        |
+| Port                                            | Protocol | Usage                                |
+|-------------------------------------------------|----------|--------------------------------------|
+| 13579, or `StreamApiPort`                       | gRPC     | Communication with Stream API Client |  
+| Dependent on `RemoteKeyGeneratorServiceAddress` | gRPC     | Remote Key Generator service         |
 
 ### Configuration
 | Option        | Value                                         | Required | Default                   |
@@ -24,8 +38,8 @@ Several options are available for
 
 | Option                             | Value                                                                                                                                                        | Required                                        | Default | DataType              |
 |------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|---------|-----------------------|
-| `StreamCreationStrategy`           | `1` for partition based, or<br/> `2` for topic based                                                                                                         | Yes                                             |         | int                   |
 | `BrokerUrl`                        | URL to the Kafka broker including port number                                                                                                                | Yes                                             |         | string                |
+| `StreamCreationStrategy`           | `1` for partition based, or<br/> `2` for topic based                                                                                                         | Yes                                             |         | int                   |
 | `PartitionMappings`                | An array of Key/Value pairs mapping the stream to a specific topic/partition                                                                                 | Required when `StreamCreationStrategy` is `1`   |         | array\[(string,int)\] |
 | `IntegrateSessionManagement`       | True to enable the integrated session management service.                                                                                                    | No                                              | `true`  | bool                  |
 | `IntegrateDataFormatManagement`    | True to enable the data format management service.                                                                                                           | No                                              | `true`  | bool                  |
