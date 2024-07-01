@@ -8,8 +8,7 @@ modern, cross-platform gRPC interface, and mediates access to the units – via 
 Monitor – across the network from multiple clients. 
 
 ## [Open Streaming Architecture](open_streaming_architecture/index.md)
-A standard, open set of rules and services for streaming telemetry data over a broker 
-(assumed to be Kafka, but other brokers will be supported). Includes full definition of 
+A standard, open set of rules and services for streaming telemetry data over a broker. Includes full definition of 
 the Protobuf schema for transmitting messages, along with documentation describing the 
 messages.
 

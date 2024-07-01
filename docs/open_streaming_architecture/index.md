@@ -1,6 +1,5 @@
 # Open Streaming Architecture
-A standard, open set of rules and services for streaming telemetry data over a broker 
-(assumed to be Kafka, but other brokers will be supported). Includes full definition of 
+A standard, open set of rules and services for streaming telemetry data over a broker. Includes full definition of 
 the Protobuf schema for transmitting messages, along with documentation describing the 
 messages.
  
@@ -24,7 +23,8 @@ consumers). It utilizes broker technologies for message transmission, simulating
 real-world network routers. This service leverages a custom protocol, separates routing 
 concerns from content, and offers extensibility and configurability. It adheres to the 
 principle of Separation of Concerns, ensuring an organized and scalable architecture.
-Currently, we have implemented this is as part of the Stream API for ease of use and 
+
+Currently, we have implemented this as part of the Stream API for ease of use and 
 allows configuration of [stream creation strategy](stream_api/stream_server.md/#stream-creation-strategy).
 
 ### Bridge Service
