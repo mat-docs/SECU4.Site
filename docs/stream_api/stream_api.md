@@ -36,17 +36,17 @@ The image for the Stream API Server is available on DockerHub as `mclarenapplied
 ### Configuration file
 Several options are available for 
 
-| Option                             | Value                                                                                                                                                        | Required                                        | Default | DataType              |
-|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|---------|-----------------------|
-| `BrokerUrl`                        | URL to the Kafka broker including port number                                                                                                                | Yes                                             |         | string                |
-| `StreamCreationStrategy`           | `1` for partition based, or<br/> `2` for topic based                                                                                                         | Yes                                             |         | int                   |
-| `PartitionMappings`                | An array of Key/Value pairs mapping the stream to a specific topic/partition                                                                                 | Required when `StreamCreationStrategy` is `1`   |         | array\[(string,int)\] |
-| `IntegrateSessionManagement`       | True to enable the integrated session management service.                                                                                                    | No                                              | `true`  | bool                  |
-| `IntegrateDataFormatManagement`    | True to enable the data format management service.                                                                                                           | No                                              | `true`  | bool                  |
-| `UseRemoteKeyGenerator`            | Use a Remote Key Generator within the Data Format Management Service, if used.                                                                               | No                                              | `false` | bool                  |
-| `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.                                                                                      | Required when `UseRemoteKeyGenerator` is `true` | `""`    | string                |
-| `BatchingResponses`                | Process messages in batch, at a cost of minor latency, this allows a large amount of messages at the same time. Recommended to be use during session offload | No                                              | `false` | bool                  |
-| `StreamApiPort`                    | Port to be used to establish the gRPC connection                                                                                                             | No                                              | `13579` | int                   |
+| Option                             | Value                                                                          | Required                                        | Default | DataType              |
+|------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------|---------|-----------------------|
+| `BrokerUrl`                        | URL to the Kafka broker including port number                                  | Yes                                             |         | string                |
+| `StreamCreationStrategy`           | `1` for partition based, or<br/> `2` for topic based                           | Yes                                             |         | int                   |
+| `PartitionMappings`                | An array of Key/Value pairs mapping the stream to a specific topic/partition   | Required when `StreamCreationStrategy` is `1`   |         | array\[(string,int)\] |
+| `IntegrateSessionManagement`       | True to enable the integrated session management service.                      | No                                              | `true`  | bool                  |
+| `IntegrateDataFormatManagement`    | True to enable the data format management service.                             | No                                              | `true`  | bool                  |
+| `UseRemoteKeyGenerator`            | Use a Remote Key Generator within the Data Format Management Service, if used. | No                                              | `false` | bool                  |
+| `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.        | Required when `UseRemoteKeyGenerator` is `true` | `""`    | string                |
+| `BatchingResponses`                | Process messages in [batch](#batching-responses).                              | No                                              | `false` | bool                  |
+| `StreamApiPort`                    | Port to be used to establish the gRPC connection                               | No                                              | `13579` | int                   |
 
 ### PartitionMappings
 
@@ -56,3 +56,10 @@ Topic based - no partition mapping require - refer to open doc for more info
 Partition based - if there is no partition mapping given, the default partition of the main topic will be used.   
 
 
+## Batching Responses
+
+When a high amount of messages is processed at the same time. The overhead can be significant and the bandwidth can be 
+more efficiently utilised by batching the responses. 
+
+The configuration on the server side corresponds to the behaviour when consuming off the broker, whereas 
+the configuration on the client side corresponds to the behaviour when producing to the broker.
