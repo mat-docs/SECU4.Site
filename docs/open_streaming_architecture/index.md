@@ -18,10 +18,17 @@ telemetry, interoperating with ATLAS clients and the surrounding data processing
 ecosystem.
 
 ### Routing Service
-Service for transporting packets to configurable topics / brokers, decoupling the 
-specific broker technology from the producer that is writing telemetry packets. A .NET 
-library will be published, along with C# source code. A plugin mechanism will make it 
-simple for end users to integrate the Stream Protocol with any broker technology.
+The Routing Service aims to efficiently manage the transfer of data, specifically byte 
+arrays, from source nodes (publishers or producers) to destination nodes (subscribers or
+consumers). It utilizes broker technologies for message transmission, simulating 
+real-world network routers. This service leverages a custom protocol, separates routing 
+concerns from content, and offers extensibility and configurability. It adheres to the 
+principle of Separation of Concerns, ensuring an organized and scalable architecture.
+Currently, we have implemented this is as part of the Stream API for ease of use and 
+allows configuration of [stream creation strategy](stream_api/stream_server.md/#stream-creation-strategy).
+ 
+In the future, we will work with different broker technologies without making publishers
+or consumers change their setups.
 
 ### Bridge Service
 Standalone service that decodes a raw stream of quads from an ADS, converting the data 
