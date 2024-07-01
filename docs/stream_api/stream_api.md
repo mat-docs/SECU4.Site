@@ -1,18 +1,19 @@
 # Stream API
 
-The Stream API is responsible for publishing and consuming data from the Kafka broker. Created under the gRPC framework,
-it allows clients to communicate to a server which handles the kafka communication.
+The Stream API is responsible for publishing and consuming data from the Kafka broker. Created under the 
+[gRPC framework](https://grpc.io/), it allows clients to communicate to a server which handles the Kafka communication.
 
 The server and the client can be deployed locally within the same application or the server can be deployed remotely 
 with the docker image provided.
 
 ## Stream API Client
-
-C# libraries for the Stream API Client are compiled from the proto files, to facilitate deployment.
+C# libraries for the Stream API, generated from the proto files, are available to facilitate testing and deployment. 
 
 `MA.Streaming.Proto.Client.Local` can be used in conjunction with `MA.Streaming.Proto.ServerComponent`. 
 
-`MA.Streaming.Proto.Client.Remote` can be used in conjunction with the [Stream API Server Container](./#stream-api-server-container).
+`MA.Streaming.Proto.Client.Remote` can be used in conjunction with the [Stream API Server Container](#stream-api-server-container).
+
+These libraries can be found at NuGet packages on the [McLaren Applied NuGet feed](https://github.com/orgs/mat-docs/packages). 
 
 Given the API is created under the gRPC framework, it is possible to generate client and server classes in a language of
 your choice. 
@@ -34,7 +35,7 @@ The image for the Stream API Server is available on DockerHub as `mclarenapplied
 | `CONFIG_PATH` | Path to the [config file](#configuration-file) within the container. | No       | `/Configs/AppConfig.json` |
 
 ### Configuration file
-Several options are available for 
+Several options on the Stream API Server Container can be configured via a json file. 
 
 | Option                             | Value                                                                          | Required                                          | Default | DataType              |
 |------------------------------------|--------------------------------------------------------------------------------|---------------------------------------------------|---------|-----------------------|
@@ -51,17 +52,17 @@ Several options are available for
 ## Stream Creation Strategy
 
 Data can be split into multiple streams to suite your requirements. `StreamCreationStrategy` allows you to partition the
-data into streams that corresponds to kafka topics or partitions. 
+data into streams that corresponds to Kafka topics or partitions. 
 
 ### Topic based
 
-When a topic based stream creation strategy is applied, data will be published to a topic named `{DataSource}.{Stream}`,
-e.g. a source named `Chassis` with an app group `Driver` will publish to the topic `Chassis.Driver`. If the Stream is 
-not defined, it will publish to the "main topic", that is `{DataSource}`. 
+When a topic based stream creation strategy is applied, data will be published to a topic named `{DataSource}.{Stream}`. 
+For example, data from a Datasource named `Chassis` with Stream named `Driver` will publish to the topic `Chassis.Driver`. 
+If the Stream is not defined, it will publish to the "main topic", that is `{DataSource}`. 
 
 ### Partition Based
 When a partition based stream creation strategy is applied, the data will be published to the main topic `{datasource}`, and 
-the corresponding partition based on `PartitionMappings`
+the corresponding partition based on `PartitionMappings`.
 If there are no partition mapping given, the default partition of the main topic will be used.   
 
 
