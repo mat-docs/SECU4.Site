@@ -7,7 +7,7 @@ messages.
 
 ## Components
 
-### [Stream API](stream_api/overview)
+### [Stream API](stream_api/index.md)
 A standard API to expose streaming data from SECU units and abstract away proprietary 
 implementation details. Consumers of this API will be able to write software that 
 interfaces with any viewer, network protocol, or storage technology of their choice. 

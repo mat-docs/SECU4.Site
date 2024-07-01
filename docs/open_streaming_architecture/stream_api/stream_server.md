@@ -32,7 +32,7 @@ Several options on the Stream API Server Container can be configured via a json 
 | `IntegrateDataFormatManagement`    | True to enable the data format management service.                             | No                                                | `true`  | bool                  |
 | `UseRemoteKeyGenerator`            | Use a Remote Key Generator within the Data Format Management Service, if used. | No                                                | `false` | bool                  |
 | `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.        | Required when `UseRemoteKeyGenerator` is `true`   | `""`    | string                |
-| `BatchingResponses`                | Process messages in [batch](../overview/#batching-responses).                  | No                                                | `false` | bool                  |
+| `BatchingResponses`                | Process messages in [batch](index.md/#batching-responses).                     | No                                                | `false` | bool                  |
 | `StreamApiPort`                    | Port to be used to establish the gRPC connection                               | No                                                | `13579` | int                   |
 
 ## Stream Creation Strategy
