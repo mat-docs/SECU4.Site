@@ -44,9 +44,16 @@ nav:
       - Overview:                 configuration_api/index.md
       - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
       - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
-  - Stream API / Protocol:        stream_api/index.md
-  - Historical Data Storage:      historic_data/index.md
 
+  - Open Streaming Architecture:
+      - Overview:                     open_streaming_architecture/index.md
+      - Stream API:
+        - Overview:                   open_streaming_architecture/stream_api/index.md
+        - Stream Client API:          open_streaming_architecture/stream_api/stream_client.md
+        - Stream Server API:          open_streaming_architecture/stream_api/stream_server.md
+        - Key Generation Service:       open_streaming_architecture/key_generation.md
+
+  - Support:                        support.md
 markdown_extensions:
   - abbr
   - admonition

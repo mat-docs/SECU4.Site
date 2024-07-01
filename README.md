@@ -1,4 +1,4 @@
-# ATLAS Integration Guide
+# SECU4 Off Car Systems Documentation Site
 
 [//]: # (TODO: Update once deployed on netlify)
 [//]: # (URL: [atlas.mclarenapplied.com/integration/rta/sdk/]&#40;https://atlas.mclarenapplied.com/integration/rta/sdk/&#41;  )
