@@ -1,6 +1,13 @@
-## Stream API Server Container
+# Stream API Server
 
-The image for the Stream API Server is available on DockerHub as `mclarenapplied/streaming-proto-server-host` 
+## Stream API Local Server
+To implement the Server in the same application as the Client, the 
+[MA.Streaming.Proto.ServerComponent package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.ServerComponent)
+can be used.
+
+## Stream API Remote Server Container
+
+The image for the Stream API Server is available on [DockerHub](https://hub.docker.com/r/mclarenapplied/streaming-proto-server-host)  as `mclarenapplied/streaming-proto-server-host` 
 
 ### Ports
 | Port                                            | Protocol | Usage                                |
