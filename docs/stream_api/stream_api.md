@@ -36,24 +36,33 @@ The image for the Stream API Server is available on DockerHub as `mclarenapplied
 ### Configuration file
 Several options are available for 
 
-| Option                             | Value                                                                          | Required                                        | Default | DataType              |
-|------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------|---------|-----------------------|
-| `BrokerUrl`                        | URL to the Kafka broker including port number                                  | Yes                                             |         | string                |
-| `StreamCreationStrategy`           | `1` for partition based, or<br/> `2` for topic based                           | Yes                                             |         | int                   |
-| `PartitionMappings`                | An array of Key/Value pairs mapping the stream to a specific topic/partition   | Required when `StreamCreationStrategy` is `1`   |         | array\[(string,int)\] |
-| `IntegrateSessionManagement`       | True to enable the integrated session management service.                      | No                                              | `true`  | bool                  |
-| `IntegrateDataFormatManagement`    | True to enable the data format management service.                             | No                                              | `true`  | bool                  |
-| `UseRemoteKeyGenerator`            | Use a Remote Key Generator within the Data Format Management Service, if used. | No                                              | `false` | bool                  |
-| `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.        | Required when `UseRemoteKeyGenerator` is `true` | `""`    | string                |
-| `BatchingResponses`                | Process messages in [batch](#batching-responses).                              | No                                              | `false` | bool                  |
-| `StreamApiPort`                    | Port to be used to establish the gRPC connection                               | No                                              | `13579` | int                   |
+| Option                             | Value                                                                          | Required                                          | Default | DataType              |
+|------------------------------------|--------------------------------------------------------------------------------|---------------------------------------------------|---------|-----------------------|
+| `BrokerUrl`                        | URL(s) to the Kafka broker including port number, separated by commas.         | Yes                                               |         | string                |
+| `StreamCreationStrategy`           | `1` for partition based, or<br/> `2` for topic based                           | Yes                                               |         | int                   |
+| `PartitionMappings`                | An array of Key/Value pairs mapping the stream to a specific partition         | Only applies when `StreamCreationStrategy` is `1` |         | array\[(string,int)\] |
+| `IntegrateSessionManagement`       | True to enable the integrated session management service.                      | No                                                | `true`  | bool                  |
+| `IntegrateDataFormatManagement`    | True to enable the data format management service.                             | No                                                | `true`  | bool                  |
+| `UseRemoteKeyGenerator`            | Use a Remote Key Generator within the Data Format Management Service, if used. | No                                                | `false` | bool                  |
+| `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.        | Required when `UseRemoteKeyGenerator` is `true`   | `""`    | string                |
+| `BatchingResponses`                | Process messages in [batch](#batching-responses).                              | No                                                | `false` | bool                  |
+| `StreamApiPort`                    | Port to be used to establish the gRPC connection                               | No                                                | `13579` | int                   |
 
-### PartitionMappings
+## Stream Creation Strategy
 
-Topic based - no partition mapping require - refer to open doc for more info 
+Data can be split into multiple streams to suite your requirements. `StreamCreationStrategy` allows you to partition the
+data into streams that corresponds to kafka topics or partitions. 
 
-[//]: # (TODO: link to doc / reword)
-Partition based - if there is no partition mapping given, the default partition of the main topic will be used.   
+### Topic based
+
+When a topic based stream creation strategy is applied, data will be published to a topic named `{DataSource}.{Stream}`,
+e.g. a source named `Chassis` with an app group `Driver` will publish to the topic `Chassis.Driver`. If the Stream is 
+not defined, it will publish to the "main topic", that is `{DataSource}`. 
+
+### Partition Based
+When a partition based stream creation strategy is applied, the data will be published to the main topic `{datasource}`, and 
+the corresponding partition based on `PartitionMappings`
+If there are no partition mapping given, the default partition of the main topic will be used.   
 
 
 ## Batching Responses
