@@ -52,6 +52,7 @@ nav:
 
   - Historical Data Storage:         historic_data/index.md
 
+  - Support:                        support.md
 markdown_extensions:
   - abbr
   - admonition
