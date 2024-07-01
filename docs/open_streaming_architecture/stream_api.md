@@ -26,7 +26,7 @@ The image for the Stream API Server is available on DockerHub as `mclarenapplied
 ### Ports
 | Port                                            | Protocol | Usage                                |
 |-------------------------------------------------|----------|--------------------------------------|
-| 13579, or `StreamApiPort`                       | gRPC     | Communication with Stream API Client |  
+| `13579`, or `StreamApiPort`                     | gRPC     | Communication with Stream API Client |  
 | Dependent on `RemoteKeyGeneratorServiceAddress` | gRPC     | Remote Key Generator service         |
 
 ### Configuration

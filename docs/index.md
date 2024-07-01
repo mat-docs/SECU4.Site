@@ -18,7 +18,7 @@ This will be integrated with a protocol for streaming engineering (calibrated)
 telemetry, interoperating with ATLAS clients and the surrounding data processing 
 ecosystem.
 
-[Open Streaming Architecture](stream_api/index.md) 
+[Open Streaming Architecture](open_streaming_architecture/index.md) 
 
 ## Historical Data Storage (Parquet)
 In addition to the ATLAS session formats, a Parquet format will be supported for storing
