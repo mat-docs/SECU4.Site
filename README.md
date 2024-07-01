@@ -1,11 +1,10 @@
 # SECU4 Off Car Systems Documentation Site
 
-[//]: # (TODO: Update once deployed on netlify)
-[//]: # (URL: [atlas.mclarenapplied.com/integration/rta/sdk/]&#40;https://atlas.mclarenapplied.com/integration/rta/sdk/&#41;  )
-[//]: # (Hosting: [mclaren-rta.netlify.app]&#40;https://mclaren-rta.netlify.app/&#41;)
 
-[//]: # ([![Netlify Status]&#40;https://api.netlify.com/api/v1/badges/70188770-aad4-4cd1-addf-ce5a36b286e7/deploy-status&#41;]&#40;https://app.netlify.com/sites/mclaren-rta/deploys&#41;)
+URL: [atlas.mclarenapplied.com/secu4/](https://atlas.mclarenapplied.com/secu4/)  
+Hosting: [mclaren-atlas-secu4.netlify.app/](https://mclaren-atlas-secu4.netlify.app/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6544b83b-9ea3-46ca-a7f7-4da2f94cbab6/deploy-status)](https://app.netlify.com/sites/mclaren-atlas-secu4/deploys)
 ## Setup
 
 Install Visual Studio Code.
