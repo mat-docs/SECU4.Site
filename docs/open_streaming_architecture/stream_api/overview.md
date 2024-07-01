@@ -15,7 +15,7 @@ Four components are currently available for evaluation:
 
 ## Batching Responses
 
-When a high amount of messages is processed at the same time. The overhead can be significant and the bandwidth can be 
+When a high amount of messages is processed at the same time, the overhead can be significant and the bandwidth can be 
 more efficiently utilised by batching the responses. 
 
 The configuration on the server side corresponds to the behaviour when consuming off the broker, whereas 
@@ -24,14 +24,14 @@ the configuration on the client side corresponds to the behaviour when producing
 ## Sample Implementation
 
 ### Simple stream produce consumer
-In this scenario, a custom data producer can publish data onto the Kafka broker via the
-Stream API client and the Stream API Container. 
+In this scenario, a custom data producer can publish data onto the broker via the
+Stream API Client and the Stream API Server. 
 
-The Stream API Client is an in-process API, so in the implementation, the producer and the
-Stream API Client can be in the same executable. The Stream API Client will establish a 
-gRPC channel with the Container to transfer the data to be published to the broker. 
+The Stream API Client is an in-process API, so in this implementation, the producer and the
+Stream API Client can be in the same application. The Stream API Client will establish a 
+gRPC channel with the Server to transfer the data to be published to the broker. 
 
-The same combination of Stream API Container and Stream API Client can be used to 
+The same combination of Stream API Server and Stream API Client can be used to 
 retrieve the same data from the broker.
 
 ![Architecture of simple stream producer consumer](../assets/stream_architecture_light.png#only-light)
