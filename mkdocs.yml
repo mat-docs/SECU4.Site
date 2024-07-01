@@ -45,11 +45,10 @@ nav:
       - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
       - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
 
-  - Stream API / Protocol:
+  - Open Streaming Architecture:
       - Overview:                     stream_api/index.md
-      - Stream API Container:         stream_api/server_container.md
-      - Windows service application:  stream_api/windows_service_application.md
-
+      - Stream API:                   stream_api/stream_api.md
+      - Key generation Service:       stream_api/key_generation.md
 
   - Historical Data Storage:         historic_data/index.md
 

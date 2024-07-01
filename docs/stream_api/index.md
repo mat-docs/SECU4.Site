@@ -1,4 +1,4 @@
-# Stream API / Protocol 
+# Open Streaming Architecture
 
 A standard API to expose streaming data from SECU units and abstract away proprietary
 implementation details. Consumers of this API will be able to write software that 
@@ -9,11 +9,11 @@ telemetry, interoperating with ATLAS clients and the surrounding data processing
 ecosystem.
  
 # Components
-For the 2024 July milestone, 3 components will be delivered for evaluation:
+For the 2024 July milestone, 3 components are currently available for evaluation:
 
-1. Stream API container
-2. Stream API client as NuGet package
-3. Windows service application (TODO: ADS Dev version?)
+1. Stream API server as docker image
+2. Stream API server as NuGet package
+3. Stream API client as NuGet package
 
 # Sample Implementation
 
@@ -31,9 +31,3 @@ retrieve the same data from the broker.
 ![Architecture of simple stream producer consumer](assets/stream_architecture_light.png#only-light)
 ![Architecture of simple stream producer consumer](assets/stream_architecture_dark.png#only-dark)
 
-## Streaming SECU data
-
-With the Windows service application provided, SECU data can be streamed into a Kafka broker.
-
-![Architecture of streaming SECU data](assets/SECU_data_light.png#only-light)
-![Architecture of streaming SECU data](assets/SECU_data_dark.png#only-dark)

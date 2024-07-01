@@ -9,7 +9,7 @@ Monitor – across the network from multiple clients.
 
 [Configuration API](configuration_api/index.md) 
 
-## Stream API / Protocol
+## Open Streaming Architecture
 A standard API to expose streaming data from SECU units and abstract away proprietary
 implementation details. Consumers of this API will be able to write software that 
 interfaces with any viewer, network protocol, or storage technology of their choice. 
@@ -18,7 +18,7 @@ This will be integrated with a protocol for streaming engineering (calibrated)
 telemetry, interoperating with ATLAS clients and the surrounding data processing 
 ecosystem.
 
-[Stream API / Protocol](stream_api/index.md) 
+[Open Streaming Architecture](stream_api/index.md) 
 
 ## Historical Data Storage (Parquet)
 In addition to the ATLAS session formats, a Parquet format will be supported for storing
