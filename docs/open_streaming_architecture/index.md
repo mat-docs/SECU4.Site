@@ -2,8 +2,9 @@
 A standard, open set of rules and services for streaming telemetry data over a broker. Includes full definition of 
 the Protobuf schema for transmitting messages, along with documentation describing the 
 messages.
- 
-![open streaming architecture](assets/open_streaming.png)
+
+![open streaming architecture](assets/open_streaming_light.png#only-light)
+![open streaming architecture](assets/open_streaming_dark.png#only-dark)
 
 ## Components
 
@@ -15,17 +16,6 @@ All the data from the SECU unit (after RDA filtering) will be available on the s
 This will be integrated with a protocol for streaming engineering (calibrated) 
 telemetry, interoperating with ATLAS clients and the surrounding data processing 
 ecosystem.
-
-### Routing Service
-The Routing Service aims to efficiently manage the transfer of data, specifically byte 
-arrays, from source nodes (publishers or producers) to destination nodes (subscribers or
-consumers). It utilizes broker technologies for message transmission, simulating 
-real-world network routers. This service leverages a custom protocol, separates routing 
-concerns from content, and offers extensibility and configurability. It adheres to the 
-principle of Separation of Concerns, ensuring an organized and scalable architecture.
-
-Currently, we have implemented this as part of the Stream API for ease of use and 
-allows configuration of [stream creation strategy](stream_api/stream_server.md/#stream-creation-strategy).
 
 ### Bridge Service
 Standalone service that decodes a raw stream of quads from an ADS, converting the data 
