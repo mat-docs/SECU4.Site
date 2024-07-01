@@ -29,9 +29,9 @@ The image for the Stream API Server is available on DockerHub as `mclarenapplied
 | Dependent on `RemoteKeyGeneratorServiceAddress` | gRPC     | Remote Key Generator service         |
 
 ### Configuration
-| Option        | Value                                         | Required | Default                   |
-|---------------|-----------------------------------------------|----------|---------------------------|
-| `CONFIG_PATH` | Path to the config file within the container. | No       | `/Configs/AppConfig.json` |
+| Option        | Value                                                                | Required | Default                   |
+|---------------|----------------------------------------------------------------------|----------|---------------------------|
+| `CONFIG_PATH` | Path to the [config file](#configuration-file) within the container. | No       | `/Configs/AppConfig.json` |
 
 ### Configuration file
 Several options are available for 
