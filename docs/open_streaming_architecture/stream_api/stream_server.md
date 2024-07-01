@@ -1,24 +1,3 @@
-# Stream API
-
-The Stream API is responsible for publishing and consuming data from the Kafka broker. Created under the 
-[gRPC framework](https://grpc.io/), it allows clients to communicate to a server which handles the Kafka communication.
-
-The server and the client can be deployed locally within the same application or the server can be deployed remotely 
-with the docker image provided.
-
-## Stream API Client
-C# libraries for the Stream API, generated from the proto files, are available to facilitate testing and deployment. 
-
-`MA.Streaming.Proto.Client.Local` can be used in conjunction with `MA.Streaming.Proto.ServerComponent`. 
-
-`MA.Streaming.Proto.Client.Remote` can be used in conjunction with the [Stream API Server Container](#stream-api-server-container).
-
-These libraries can be found at NuGet packages on the [McLaren Applied NuGet feed](https://github.com/orgs/mat-docs/packages). 
-
-Given the API is created under the gRPC framework, it is possible to generate client and server classes in a language of
-your choice. 
-For details documentation of each of the RPC calls, refer to the [proto file]().
-
 ## Stream API Server Container
 
 The image for the Stream API Server is available on DockerHub as `mclarenapplied/streaming-proto-server-host` 
@@ -46,7 +25,7 @@ Several options on the Stream API Server Container can be configured via a json 
 | `IntegrateDataFormatManagement`    | True to enable the data format management service.                             | No                                                | `true`  | bool                  |
 | `UseRemoteKeyGenerator`            | Use a Remote Key Generator within the Data Format Management Service, if used. | No                                                | `false` | bool                  |
 | `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.        | Required when `UseRemoteKeyGenerator` is `true`   | `""`    | string                |
-| `BatchingResponses`                | Process messages in [batch](#batching-responses).                              | No                                                | `false` | bool                  |
+| `BatchingResponses`                | Process messages in [batch](../overview/#batching-responses).                  | No                                                | `false` | bool                  |
 | `StreamApiPort`                    | Port to be used to establish the gRPC connection                               | No                                                | `13579` | int                   |
 
 ## Stream Creation Strategy
@@ -64,12 +43,3 @@ If the Stream is not defined, it will publish to the "main topic", that is `{Dat
 When a partition based stream creation strategy is applied, the data will be published to the main topic `{datasource}`, and 
 the corresponding partition based on `PartitionMappings`.
 If there are no partition mapping given, the default partition of the main topic will be used.   
-
-
-## Batching Responses
-
-When a high amount of messages is processed at the same time. The overhead can be significant and the bandwidth can be 
-more efficiently utilised by batching the responses. 
-
-The configuration on the server side corresponds to the behaviour when consuming off the broker, whereas 
-the configuration on the client side corresponds to the behaviour when producing to the broker.
