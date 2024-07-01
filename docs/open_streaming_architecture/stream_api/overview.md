@@ -6,11 +6,12 @@ The Stream API is responsible for publishing and consuming data from the Kafka b
 The server and the client can be deployed locally within the same application or the server can be deployed remotely 
 with the docker image provided.
 
-Three components are currently available for evaluation:
+Four components are currently available for evaluation:
 
-1. Stream API server as docker image 
-2. Stream API server as NuGet package 
-3. Stream API client as NuGet package
+1. Stream API Remote Server as [docker image](https://hub.docker.com/r/mclarenapplied/streaming-proto-server-host) 
+2. Stream API Remote Client as [NuGet package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.Client.Remote)
+3. Stream API Local Server as [NuGet package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.ServerComponent)
+4. Stream API Local Client as [NuGet package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.Client.Local)
 
 ## Batching Responses
 

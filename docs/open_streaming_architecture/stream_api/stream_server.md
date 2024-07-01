@@ -3,7 +3,7 @@
 ## Stream API Local Server
 To implement the Server in the same application as the Client, the 
 [MA.Streaming.Proto.ServerComponent package](https://github.com/orgs/mat-docs/packages/nuget/package/MA.Streaming.Proto.ServerComponent)
-can be used.
+can be used. The RPC channel will be established locally. 
 
 ## Stream API Remote Server Container
 

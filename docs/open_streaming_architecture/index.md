@@ -26,9 +26,6 @@ concerns from content, and offers extensibility and configurability. It adheres 
 principle of Separation of Concerns, ensuring an organized and scalable architecture.
 Currently, we have implemented this is as part of the Stream API for ease of use and 
 allows configuration of [stream creation strategy](stream_api/stream_server.md/#stream-creation-strategy).
- 
-In the future, we will work with different broker technologies without making publishers
-or consumers change their setups.
 
 ### Bridge Service
 Standalone service that decodes a raw stream of quads from an ADS, converting the data 
