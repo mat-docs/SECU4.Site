@@ -51,7 +51,7 @@ nav:
         - Overview:                   open_streaming_architecture/stream_api/overview.md
         - Stream Client API:          open_streaming_architecture/stream_api/stream_client.md
         - Stream Server API:          open_streaming_architecture/stream_api/stream_server.md
-      - Key generation Service:       open_streaming_architecture/key_generation.md
+        - Key Generation Service:       open_streaming_architecture/key_generation.md
 
   - Support:                        support.md
 markdown_extensions:
