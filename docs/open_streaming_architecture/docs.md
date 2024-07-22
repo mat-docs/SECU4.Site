@@ -30,6 +30,7 @@
     - [GetParametersListResponse](#ma-streaming-api-v1-GetParametersListResponse)
     - [GetSessionInfoRequest](#ma-streaming-api-v1-GetSessionInfoRequest)
     - [GetSessionInfoResponse](#ma-streaming-api-v1-GetSessionInfoResponse)
+    - [GetSessionInfoResponse.TopicPartitionOffsetsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-TopicPartitionOffsetsEntry)
     - [GetSessionStartNotificationRequest](#ma-streaming-api-v1-GetSessionStartNotificationRequest)
     - [GetSessionStartNotificationResponse](#ma-streaming-api-v1-GetSessionStartNotificationResponse)
     - [GetSessionStopNotificationRequest](#ma-streaming-api-v1-GetSessionStopNotificationRequest)
@@ -41,10 +42,6 @@
     - [ReadDataPacketsResponse](#ma-streaming-api-v1-ReadDataPacketsResponse)
     - [ReadEssentialsRequest](#ma-streaming-api-v1-ReadEssentialsRequest)
     - [ReadEssentialsResponse](#ma-streaming-api-v1-ReadEssentialsResponse)
-    - [ReadNextDataPacketRequest](#ma-streaming-api-v1-ReadNextDataPacketRequest)
-    - [ReadNextDataPacketResponse](#ma-streaming-api-v1-ReadNextDataPacketResponse)
-    - [ReadNextPacketRequest](#ma-streaming-api-v1-ReadNextPacketRequest)
-    - [ReadNextPacketResponse](#ma-streaming-api-v1-ReadNextPacketResponse)
     - [ReadPacketsRequest](#ma-streaming-api-v1-ReadPacketsRequest)
     - [ReadPacketsResponse](#ma-streaming-api-v1-ReadPacketsResponse)
     - [UpdateSessionIdentifierRequest](#ma-streaming-api-v1-UpdateSessionIdentifierRequest)
@@ -415,7 +412,7 @@ Response for a data format request
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| data_format | [string](#string) |  | Data format identifier |
+| data_format_identifier | [uint64](#uint64) |  | Data format identifier |
 
 
 
@@ -431,7 +428,7 @@ Request for an event from a data format ID
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_source | [string](#string) |  | Data source for which this format is used |
-| data_format | [string](#string) |  | Data format identifier |
+| data_format_identifier | [uint64](#uint64) |  | Data format identifier |
 
 
 
@@ -477,7 +474,7 @@ Response for a data format request
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| data_format | [string](#string) |  | Data format identifier |
+| data_format_identifier | [uint64](#uint64) |  | Data format identifier |
 
 
 
@@ -493,7 +490,7 @@ Request for a list of parameters from a data format ID
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_source | [string](#string) |  | Data source for which this format is used |
-| data_format | [string](#string) |  | Data format identifier |
+| data_format_identifier | [uint64](#uint64) |  | Data format identifier |
 
 
 
@@ -544,6 +541,26 @@ Response to the session info request
 | version | [uint32](#uint32) |  | Version |
 | associate_session_keys | [string](#string) | repeated | Associate session keys |
 | is_complete | [bool](#bool) |  | Shows whether the session is completed or not |
+| streams | [string](#string) | repeated | Available streams |
+| topic_partition_offsets | [GetSessionInfoResponse.TopicPartitionOffsetsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-TopicPartitionOffsetsEntry) | repeated | The offsets into each topic / partition (key is topic name, optionally appended with a &#39;:&#39; followed by the partition number) |
+| main_offset | [int64](#int64) |  | Offset of the main data source topic |
+| essentials_offset | [int64](#int64) |  | Offset of the data source essentials topic |
+
+
+
+
+
+
+<a name="ma-streaming-api-v1-GetSessionInfoResponse-TopicPartitionOffsetsEntry"></a>
+
+### GetSessionInfoResponse.TopicPartitionOffsetsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
 
 
 
@@ -712,66 +729,6 @@ The return from a packet read
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | response | [PacketResponse](#ma-streaming-api-v1-PacketResponse) | repeated |  |
-
-
-
-
-
-
-<a name="ma-streaming-api-v1-ReadNextDataPacketRequest"></a>
-
-### ReadNextDataPacketRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| request | [DataPacketRequest](#ma-streaming-api-v1-DataPacketRequest) |  |  |
-
-
-
-
-
-
-<a name="ma-streaming-api-v1-ReadNextDataPacketResponse"></a>
-
-### ReadNextDataPacketResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| response | [PacketResponse](#ma-streaming-api-v1-PacketResponse) |  |  |
-
-
-
-
-
-
-<a name="ma-streaming-api-v1-ReadNextPacketRequest"></a>
-
-### ReadNextPacketRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| connection | [Connection](#ma-streaming-api-v1-Connection) |  |  |
-
-
-
-
-
-
-<a name="ma-streaming-api-v1-ReadNextPacketResponse"></a>
-
-### ReadNextPacketResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| response | [PacketResponse](#ma-streaming-api-v1-PacketResponse) |  |  |
 
 
 
@@ -994,11 +951,9 @@ Read packets
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ReadNextPacket | [ReadNextPacketRequest](#ma-streaming-api-v1-ReadNextPacketRequest) | [ReadNextPacketResponse](#ma-streaming-api-v1-ReadNextPacketResponse) | Read the next available packet from the specified connection |
 | ReadPackets | [ReadPacketsRequest](#ma-streaming-api-v1-ReadPacketsRequest) | [ReadPacketsResponse](#ma-streaming-api-v1-ReadPacketsResponse) stream | Continuously read all packets from the specified connection |
 | ReadEssentials | [ReadEssentialsRequest](#ma-streaming-api-v1-ReadEssentialsRequest) | [ReadEssentialsResponse](#ma-streaming-api-v1-ReadEssentialsResponse) stream | Continuously read all of the essential packets from this connection |
-| ReadNextDataPacket | [ReadNextDataPacketRequest](#ma-streaming-api-v1-ReadNextDataPacketRequest) | [ReadNextDataPacketResponse](#ma-streaming-api-v1-ReadNextDataPacketResponse) | Read the next available packet containing any of the specified parameters or events Only data packets will be returned (i.e. no config, metadata etc) |
-| ReadDataPackets | [ReadDataPacketsRequest](#ma-streaming-api-v1-ReadDataPacketsRequest) | [ReadDataPacketsResponse](#ma-streaming-api-v1-ReadDataPacketsResponse) stream | Continuously read all data packets containing any of the specified parameters or events |
+| ReadDataPackets | [ReadDataPacketsRequest](#ma-streaming-api-v1-ReadDataPacketsRequest) | [ReadDataPacketsResponse](#ma-streaming-api-v1-ReadDataPacketsResponse) stream | Continuously read all data packets containing any of the specified parameters or events Only data packets will be returned (i.e. no config, metadata etc) |
 
 
 <a name="ma-streaming-api-v1-PacketWriterService"></a>
@@ -1237,6 +1192,7 @@ Defines the metadata for a given event
 | groups | [string](#string) | repeated | List of group identifiers in which the event should appear |
 | data_types | [DataType](#ma-streaming-open_data-v1-DataType) | repeated | List of native data types for each value |
 | format_strings | [string](#string) | repeated | List of format strings, applied to event values for display |
+| conversions | [TextConversionDefinition](#ma-streaming-open_data-v1-TextConversionDefinition) | repeated | Text conversion rules to be applied to event values if applicable |
 
 
 
@@ -1361,6 +1317,7 @@ Marker
 | type | [string](#string) |  | Type of marker |
 | description | [string](#string) |  | Text Description |
 | source | [string](#string) |  | Source |
+| value | [int64](#int64) |  | Value of the marker if applicable |
 
 
 
@@ -1460,7 +1417,7 @@ Defines the metadata for a given parameter
 | name | [string](#string) |  | The name of the parameter |
 | application_name | [string](#string) |  | The application containing the parameter |
 | description | [string](#string) |  | The parameter description |
-| groups | [string](#string) | repeated | List of group identifiers in which the event should appear |
+| groups | [string](#string) | repeated | List of group identifiers in which the parameter should appear |
 | units | [string](#string) |  | Units that this parameter is measured in |
 | data_type | [DataType](#ma-streaming-open_data-v1-DataType) |  | Native data type |
 | format_string | [string](#string) |  | Format strings, applied to sample values for display |
@@ -1469,6 +1426,8 @@ Defines the metadata for a given parameter
 | warning_min_value | [double](#double) |  | Threshold minimum value for warnings |
 | warning_max_value | [double](#double) |  | Threshold maximum value for warnings |
 | frequencies | [double](#double) | repeated | Frequencies at which samples of this parameter may be sent |
+| includes_row_data | [bool](#bool) |  | Whether row data samples may be sent for this parameter |
+| includes_synchro_data | [bool](#bool) |  | Whether synchro data samples may be sent for this parameter |
 | conversion | [TextConversionDefinition](#ma-streaming-open_data-v1-TextConversionDefinition) |  | Text conversion rule to be applied if applicable |
 | formula | [FormulaDefinition](#ma-streaming-open_data-v1-FormulaDefinition) |  | Formula for calculating sample values if applicable |
 
