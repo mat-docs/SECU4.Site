@@ -132,7 +132,8 @@ Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, whi
     ``` 
 
 
-Also, logs generated when running the Bridge Service will go in *"BridgeLogYYYMMDD.txt"* file, which can be found in *../Documents/McLaren Electronic Systems/ATLAS9/log* folder. 
+!!! info
+    Bridge Service logs are stored in a *"BridgeLogYYYMMDD.txt"* file, which can be found in *../Documents/McLaren Electronic Systems/ATLAS9/log* folder. 
 
 ## Setup
 
