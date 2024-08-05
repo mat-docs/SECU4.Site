@@ -47,6 +47,7 @@ nav:
 
   - Open Streaming Architecture:
       - Overview:                     open_streaming_architecture/index.md
+      - Bridge Service:               open_streaming_architecture/bridge_service/index.md
       - Stream API:
         - Overview:                   open_streaming_architecture/stream_api/index.md
         - Stream API Client:          open_streaming_architecture/stream_api/stream_client.md
