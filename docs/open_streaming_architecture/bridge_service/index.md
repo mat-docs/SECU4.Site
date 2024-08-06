@@ -16,9 +16,9 @@ Currently, the Bridge Service is installed with ADS and will share settings used
 Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, which can be found in *../Documents/McLaren Electronic Systems/ATLAS9/BridgeService* folder. The data can be split multiple Kafka topics or partitions. For more, information please refer to [Stream Creation Strategy](https://atlas.mclarenapplied.com/secu4/open_streaming_architecture/stream_api/stream_server/#stream-creation-strategy)
 
 
-=== "Example with StreamCreationStrategy 2"
+=== "Example with StreamCreationStrategy=2 (Topic based)"
 
-    ```json title="BridgeServiceConfig.json" linenums="1"
+    ```json title="BridgeServiceConfig.json" linenums="1" hl_lines="3"
     {
         "StreamApiConfig": {
             "StreamCreationStrategy": 2,
@@ -37,9 +37,9 @@ Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, whi
         }
     }
     ```
-=== "Example with StreamCreationStrategy 1"
+=== "Example with StreamCreationStrategy=1 (Partition bases)"
 
-    ```json title="BridgeServiceConfig.json" linenums="1"
+    ```json title="BridgeServiceConfig.json" linenums="1" hl_lines="3"
     {
         "StreamApiConfig": {
             "StreamCreationStrategy": 1,
