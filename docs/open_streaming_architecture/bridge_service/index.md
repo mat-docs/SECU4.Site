@@ -145,6 +145,7 @@ To enable the Bridge Service, set "Enable remote data feed" setting to "True" in
 
 Restart ADS once the setting is applied. 
 
+Once the data is published on Kafka, users can use the Stream API to consume the data. For more information, please refer to the [Stream API Sample code](https://github.com/mat-docs/MA.Streaming.Api.UsageSample)
 
 !!! note
     Currently, ADS will launch the Bridge Service in a separate command prompt for ease of testing/validation and diagnostics.
