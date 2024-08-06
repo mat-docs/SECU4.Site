@@ -37,7 +37,7 @@ Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, whi
         }
     }
     ```
-=== "Example with StreamCreationStrategy=1 (Partition bases)"
+=== "Example with StreamCreationStrategy=1 (Partition based)"
 
     ```json title="BridgeServiceConfig.json" linenums="1" hl_lines="3"
     {
