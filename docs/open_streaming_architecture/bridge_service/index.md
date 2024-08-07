@@ -141,7 +141,7 @@ Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, whi
 
 Kafka broker - The Bridge service needs to be configured to write to a Kafka broker. As you can see in the above example, the config file points to a broker url, which is hosting kafka locally on the same machine as the ADS.
 
-To enable the Bridge Service, set "Enable remote data feed" setting to "True" in ADS | Tools | Options | Recording tab
+To enable the Bridge Service, set "Enable remote data feed" setting to "True" in ADS | Tools | Options | Recording tab | General
 
 Restart ADS once the setting is applied. 
 
