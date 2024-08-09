@@ -76,7 +76,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
-  - pymdownx.tabbed
+  - pymdownx.tabbed:
+      alternate_style:true
   - pymdownx.snippets:
       base_path: docs
   - pymdownx.superfences
