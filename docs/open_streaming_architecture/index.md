@@ -17,7 +17,7 @@ This will be integrated with a protocol for streaming engineering (calibrated)
 telemetry, interoperating with ATLAS clients and the surrounding data processing 
 ecosystem.
 
-### Bridge Service
+### [Bridge Service](bridge_service/index.md)
 Standalone service that decodes a raw stream of quads from an ADS, converting the data 
 to engineering values then into the Stream Protocol via the Stream API. Will include 
 components to manage sessions, configuration, metadata etc. All RDA protected data will 
