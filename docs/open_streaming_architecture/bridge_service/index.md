@@ -150,4 +150,12 @@ Once the data is published on Kafka, users can use the Stream API to consume the
 !!! note
     Currently, ADS will launch the Bridge Service in a separate command prompt for ease of testing/validation and diagnostics.
 
+## UNIX Timestamps
 
+Timestamps from McLaren Applied ECUs are relative to midnight local time. To convert the timestamps to UNIX epoch time in UTC, 
+the date and the local timezone offset on the machine hosting the bridge service is used. 
+
+!!! warning
+    It also applies to File Telemetry Recorders and Multi-Session Offload Recorders in addition to live telemetry. 
+    Replaying a raw file on a machine that is incorrectly configured could publish timestamps at the incorrect date and 
+    timezone.
