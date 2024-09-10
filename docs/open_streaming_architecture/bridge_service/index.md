@@ -1,19 +1,29 @@
 # Bridge Service
 
 ## Introduction
-The Bridge Service decodes a raw stream of quads from an ATLAS Data Server (ADS), converting the data to engineering values then into the Stream Protocol via the Stream API. It includes components to manage sessions, configuration, metadata etc. 
-All RDA protected data will be filtered out at this point, based on the active team license, so any downstream components will only receive data available to the team. 
+The Bridge Service decodes a raw stream of quads from an ATLAS Data Server (ADS), converting the data to engineering 
+values then into the Stream Protocol via the Stream API. It includes components to manage sessions, configuration, 
+metadata etc. 
+All RDA protected data will be filtered out at this point, based on the active team license, so any downstream 
+components will only receive data available to the team. 
 
 
 ## Configuration
-Currently, the Bridge Service is installed with ADS and will share settings used by ADS, i.e. the licence used by ADS, and all the config, pgv and PUL files specified in ADS.
+Currently, the Bridge Service is installed with ADS and will share settings used by ADS, i.e. the licence used by ADS, 
+and all the config, pgv and PUL files specified in ADS.
 
+Bridge service uses the name of the ADS as the DataSource name. This can be configured within the ADS on 
+Setup | General | General Network Settings | Name.
 
 !!! note
-    In the future, the config will be extended to support running Bridge service on a container and hence allowing users to specify  and fetch licences and all the required pgvs and configs from different user specified location
+    In the future, the config will be extended to support running Bridge service on a container and hence allowing users 
+    to specify and fetch licences and all the required pgvs and configs from different user specified location
 
 
-Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, which can be found in *../Documents/McLaren Electronic Systems/ATLAS9/BridgeService* folder. The data can be split multiple Kafka topics or partitions. For more, information please refer to [Stream Creation Strategy](https://atlas.mclarenapplied.com/secu4/open_streaming_architecture/stream_api/stream_server/#stream-creation-strategy)
+Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, which can be found in 
+*../Documents/McLaren Electronic Systems/ATLAS9/BridgeService* folder. The data can be split multiple Kafka topics or 
+partitions. For more, information please refer to 
+[Stream Creation Strategy](../stream_api/stream_server.md/#stream-creation-strategy)
 
 
 === "Example with StreamCreationStrategy=2 (Topic based)"
@@ -142,6 +152,7 @@ Bridge Service specific settings are stored in *"BridgeServiceConfig.json"*, whi
 Kafka broker - The Bridge service needs to be configured to write to a Kafka broker. As you can see in the above example, the config file points to a broker url, which is hosting kafka locally on the same machine as the ADS.
 
 To enable the Bridge Service, set "Enable remote data feed" setting to "True" in ADS | Tools | Options | Recording tab | General
+![Enable remote data feed](../assets/enable_remote_data_feed.png)
 
 Restart ADS once the setting is applied. 
 
