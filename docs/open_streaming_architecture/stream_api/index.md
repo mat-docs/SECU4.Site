@@ -21,6 +21,12 @@ more efficiently utilised by batching the responses.
 The configuration on the server side corresponds to the behaviour when consuming off the broker, whereas 
 the configuration on the client side corresponds to the behaviour when producing to the broker.
 
+## Compression
+
+The Stream API Server handles the message compression, with `zstd` compression applied as 
+the producer compression type.
+The recommended compression setting on the broker is `producer`.
+
 ## Sample Implementation
 
 ### Simple stream produce consumer
