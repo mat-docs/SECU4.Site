@@ -51,3 +51,9 @@ If the Stream is not defined, it will publish to the "main topic", that is `{Dat
 When a partition based stream creation strategy is applied, the data will be published to the main topic `{datasource}`, and 
 the corresponding partition based on `PartitionMappings`.
 If there are no partition mapping given, the default partition of the main topic will be used.   
+
+!!! note
+    The Stream API Server will create the topic with the required number of partitions as configured in 
+    `PartitionMappings`. If the topic already exists, the Stream API Server will not be able to change the number of 
+    partitions. It is up to the user to configure the Kafka topics with the required number of partitions if the topic 
+    already exists.
