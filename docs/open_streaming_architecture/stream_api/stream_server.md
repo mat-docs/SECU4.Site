@@ -34,7 +34,6 @@ Several options on the Stream API Server Container can be configured via a json 
 | `RemoteKeyGeneratorServiceAddress` | The address of the service if the remote key generator service is used.                 | Required when `UseRemoteKeyGenerator` is `true`   | `""`    | string                |
 | `BatchingResponses`                | Process messages in [batch](index.md/#batching-responses).                              | No                                                | `false` | bool                  |
 | `StreamApiPort`                    | Port to be used to establish the gRPC connection                                        | No                                                | `13579` | int                   |
-| `PrometheusMetricPort`             | Port to retrieve Prometheus metrics, metrics can be found at `{address}:{port}/metrics` | No                                                | `""`    | bool                  |
 
 ## Stream Creation Strategy
 
