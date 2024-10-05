@@ -44,6 +44,7 @@ nav:
       - Overview:                 configuration_api/index.md
       - Protobuf:                 https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main/Protos
       - Example:                  https://github.com/mat-docs/System.Monitor.Configuration.API.Client.Sample/tree/main
+      - Protocol Documentation:   configuration_api/docs.md
 
   - Open Streaming Architecture:
       - Overview:                     open_streaming_architecture/index.md
