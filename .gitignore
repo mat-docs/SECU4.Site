@@ -1,5 +1,6 @@
 # Build results
 site/
+.vs
 
 #pycharm settings
 .idea
