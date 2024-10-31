@@ -74,6 +74,7 @@
     - [DoubleSampleList](#ma-streaming-open_data-v1-DoubleSampleList)
     - [EndOfSessionPacket](#ma-streaming-open_data-v1-EndOfSessionPacket)
     - [EndOfSessionPacket.TopicPartitionOffsetsEntry](#ma-streaming-open_data-v1-EndOfSessionPacket-TopicPartitionOffsetsEntry)
+    - [ErrorPacket](#ma-streaming-open_data-v1-ErrorPacket)
     - [EventDataFormat](#ma-streaming-open_data-v1-EventDataFormat)
     - [EventDefinition](#ma-streaming-open_data-v1-EventDefinition)
     - [EventPacket](#ma-streaming-open_data-v1-EventPacket)
@@ -104,9 +105,12 @@
     - [TextConversionDefinition](#ma-streaming-open_data-v1-TextConversionDefinition)
     - [ValueArray](#ma-streaming-open_data-v1-ValueArray)
   
+    - [CanType](#ma-streaming-open_data-v1-CanType)
     - [DataFormatType](#ma-streaming-open_data-v1-DataFormatType)
     - [DataStatus](#ma-streaming-open_data-v1-DataStatus)
     - [DataType](#ma-streaming-open_data-v1-DataType)
+    - [ErrorStatus](#ma-streaming-open_data-v1-ErrorStatus)
+    - [ErrorType](#ma-streaming-open_data-v1-ErrorType)
     - [EventPriority](#ma-streaming-open_data-v1-EventPriority)
     - [FormulaType](#ma-streaming-open_data-v1-FormulaType)
     - [SystemStatusType](#ma-streaming-open_data-v1-SystemStatusType)
@@ -1159,6 +1163,28 @@ A session has ended
 
 
 
+<a name="ma-streaming-open_data-v1-ErrorPacket"></a>
+
+### ErrorPacket
+Error Packet
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| error_identifier | [string](#string) |  | Error Identifier |
+| timestamp | [fixed64](#fixed64) |  | Time the error occurred |
+| application_name | [string](#string) |  | The application containing the error |
+| group | [string](#string) |  | The error group |
+| name | [string](#string) |  | The error name |
+| description | [string](#string) |  | The error description |
+| type | [ErrorType](#ma-streaming-open_data-v1-ErrorType) |  | The error type |
+| status | [ErrorStatus](#ma-streaming-open_data-v1-ErrorStatus) |  | The error status |
+
+
+
+
+
+
 <a name="ma-streaming-open_data-v1-EventDataFormat"></a>
 
 ### EventDataFormat
@@ -1481,6 +1507,7 @@ Raw CAN message
 | bus | [uint32](#uint32) |  | CAN Bus |
 | can_id | [uint32](#uint32) |  | CAN ID |
 | payload | [bytes](#bytes) |  | Message payload |
+| type | [CanType](#ma-streaming-open_data-v1-CanType) |  | CAN RxTx |
 
 
 
@@ -1678,6 +1705,19 @@ A text conversion definition
  
 
 
+<a name="ma-streaming-open_data-v1-CanType"></a>
+
+### CanType
+CAN type
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAN_TYPE_UNSPECIFIED | 0 |  |
+| CAN_TYPE_TRANSMIT | 1 |  |
+| CAN_TYPE_RECEIVE | 2 |  |
+
+
+
 <a name="ma-streaming-open_data-v1-DataFormatType"></a>
 
 ### DataFormatType
@@ -1722,6 +1762,32 @@ Native data type
 | DATA_TYPE_UINT8 | 7 | 8 bit unsigned integer |
 | DATA_TYPE_SINT8 | 8 | 8 bit signed integer |
 | DATA_TYPE_STRING | 9 | String |
+
+
+
+<a name="ma-streaming-open_data-v1-ErrorStatus"></a>
+
+### ErrorStatus
+Error Status
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ERROR_STATUS_UNSPECIFIED | 0 |  |
+| ERROR_STATUS_SET | 1 |  |
+| ERROR_STATUS_CLEARED | 2 |  |
+
+
+
+<a name="ma-streaming-open_data-v1-ErrorType"></a>
+
+### ErrorType
+Error type
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ERROR_TYPE_UNSPECIFIED | 0 |  |
+| ERROR_TYPE_CURRENT | 1 |  |
+| ERROR_TYPE_LOGGED | 2 |  |
 
 
 
