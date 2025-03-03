@@ -30,6 +30,7 @@
     - [GetParametersListResponse](#ma-streaming-api-v1-GetParametersListResponse)
     - [GetSessionInfoRequest](#ma-streaming-api-v1-GetSessionInfoRequest)
     - [GetSessionInfoResponse](#ma-streaming-api-v1-GetSessionInfoResponse)
+    - [GetSessionInfoResponse.DetailsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-DetailsEntry)
     - [GetSessionInfoResponse.TopicPartitionOffsetsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-TopicPartitionOffsetsEntry)
     - [GetSessionStartNotificationRequest](#ma-streaming-api-v1-GetSessionStartNotificationRequest)
     - [GetSessionStartNotificationResponse](#ma-streaming-api-v1-GetSessionStartNotificationResponse)
@@ -44,6 +45,9 @@
     - [ReadEssentialsResponse](#ma-streaming-api-v1-ReadEssentialsResponse)
     - [ReadPacketsRequest](#ma-streaming-api-v1-ReadPacketsRequest)
     - [ReadPacketsResponse](#ma-streaming-api-v1-ReadPacketsResponse)
+    - [UpdateSessionDetailsRequest](#ma-streaming-api-v1-UpdateSessionDetailsRequest)
+    - [UpdateSessionDetailsRequest.DetailsEntry](#ma-streaming-api-v1-UpdateSessionDetailsRequest-DetailsEntry)
+    - [UpdateSessionDetailsResponse](#ma-streaming-api-v1-UpdateSessionDetailsResponse)
     - [UpdateSessionIdentifierRequest](#ma-streaming-api-v1-UpdateSessionIdentifierRequest)
     - [UpdateSessionIdentifierResponse](#ma-streaming-api-v1-UpdateSessionIdentifierResponse)
     - [WriteDataPacketRequest](#ma-streaming-api-v1-WriteDataPacketRequest)
@@ -98,6 +102,7 @@
     - [SampleDataFormat](#ma-streaming-open_data-v1-SampleDataFormat)
     - [SampleRow](#ma-streaming-open_data-v1-SampleRow)
     - [SessionInfoPacket](#ma-streaming-open_data-v1-SessionInfoPacket)
+    - [SessionInfoPacket.DetailsEntry](#ma-streaming-open_data-v1-SessionInfoPacket-DetailsEntry)
     - [StringSample](#ma-streaming-open_data-v1-StringSample)
     - [StringSampleList](#ma-streaming-open_data-v1-StringSampleList)
     - [SynchroDataPacket](#ma-streaming-open_data-v1-SynchroDataPacket)
@@ -219,11 +224,12 @@ Details of a connection
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | data_source | [string](#string) |  | Data source to read from |
-| session | [string](#string) |  | Session to read (can be ommitted if sessions are not being used) |
+| session_key | [string](#string) |  | Session key of the session to read (can be ommitted if sessions are not being used) |
 | streams | [string](#string) | repeated | Streams to read (can be ommitted if all streams are required) |
 | stream_offsets | [int64](#int64) | repeated | Offset from which to start for each stream -1 = Latest, 0 = Earliest (default) |
 | main_offset | [int64](#int64) |  | Offset from which to start for the main data source topic |
 | essentials_offset | [int64](#int64) |  | Offset from which to start for the data source essentials topic |
+| exclude_main_stream | [bool](#bool) |  | to specify exclusion of the main stream from reading |
 
 
 
@@ -241,6 +247,7 @@ Request for the creation of a new session
 | data_source | [string](#string) |  | Data Source name |
 | type | [string](#string) |  | Session type (defaults to &#34;Session&#34;) |
 | version | [uint32](#uint32) |  | Version (defaults to 1) |
+| utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes, defaults to 0) |
 
 
 
@@ -549,6 +556,24 @@ Response to the session info request
 | topic_partition_offsets | [GetSessionInfoResponse.TopicPartitionOffsetsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-TopicPartitionOffsetsEntry) | repeated | The offsets into each topic / partition (key is topic name, optionally appended with a &#39;:&#39; followed by the partition number) |
 | main_offset | [int64](#int64) |  | Offset of the main data source topic |
 | essentials_offset | [int64](#int64) |  | Offset of the data source essentials topic |
+| details | [GetSessionInfoResponse.DetailsEntry](#ma-streaming-api-v1-GetSessionInfoResponse-DetailsEntry) | repeated | Session details (detail name, detail value) |
+| utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
+
+
+
+
+
+
+<a name="ma-streaming-api-v1-GetSessionInfoResponse-DetailsEntry"></a>
+
+### GetSessionInfoResponse.DetailsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -673,6 +698,7 @@ The return from a packet read
 | ----- | ---- | ----- | ----------- |
 | packet | [ma.streaming.open_data.v1.Packet](#ma-streaming-open_data-v1-Packet) |  | The packet that was read |
 | stream | [string](#string) |  | The stream the packet was read from |
+| submit_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | the time that packet submit in the broker topic partition |
 
 
 
@@ -763,6 +789,53 @@ The return from a packet read
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | response | [PacketResponse](#ma-streaming-api-v1-PacketResponse) | repeated |  |
+
+
+
+
+
+
+<a name="ma-streaming-api-v1-UpdateSessionDetailsRequest"></a>
+
+### UpdateSessionDetailsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_key | [string](#string) |  | Unique session key |
+| details | [UpdateSessionDetailsRequest.DetailsEntry](#ma-streaming-api-v1-UpdateSessionDetailsRequest-DetailsEntry) | repeated | Session details to update (detail name, detail value) |
+
+
+
+
+
+
+<a name="ma-streaming-api-v1-UpdateSessionDetailsRequest-DetailsEntry"></a>
+
+### UpdateSessionDetailsRequest.DetailsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ma-streaming-api-v1-UpdateSessionDetailsResponse"></a>
+
+### UpdateSessionDetailsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success | [bool](#bool) |  | Whether the update session details request succeeded |
 
 
 
@@ -988,6 +1061,7 @@ Manage sessions
 | GetSessionStopNotification | [GetSessionStopNotificationRequest](#ma-streaming-api-v1-GetSessionStopNotificationRequest) | [GetSessionStopNotificationResponse](#ma-streaming-api-v1-GetSessionStopNotificationResponse) stream | Continuously notifies the client when a session ends |
 | UpdateSessionIdentifier | [UpdateSessionIdentifierRequest](#ma-streaming-api-v1-UpdateSessionIdentifierRequest) | [UpdateSessionIdentifierResponse](#ma-streaming-api-v1-UpdateSessionIdentifierResponse) | Update the session identifier given its unique session key |
 | AddAssociateSession | [AddAssociateSessionRequest](#ma-streaming-api-v1-AddAssociateSessionRequest) | [AddAssociateSessionResponse](#ma-streaming-api-v1-AddAssociateSessionResponse) | Add associate session to a session given its unique session key |
+| UpdateSessionDetails | [UpdateSessionDetailsRequest](#ma-streaming-api-v1-UpdateSessionDetailsRequest) | [UpdateSessionDetailsResponse](#ma-streaming-api-v1-UpdateSessionDetailsResponse) | Update the session details for a session given its unique session key |
 
  
 
@@ -1219,6 +1293,7 @@ Defines the metadata for a given event
 | data_types | [DataType](#ma-streaming-open_data-v1-DataType) | repeated | List of native data types for each value |
 | format_strings | [string](#string) | repeated | List of format strings, applied to event values for display |
 | conversions | [TextConversionDefinition](#ma-streaming-open_data-v1-TextConversionDefinition) | repeated | Text conversion rules to be applied to event values if applicable |
+| units | [string](#string) | repeated | List of units applied to event values for display |
 
 
 
@@ -1391,6 +1466,7 @@ New session has started
 | ----- | ---- | ----- | ----------- |
 | data_source | [string](#string) |  | Data Source name |
 | topic_partition_offsets | [NewSessionPacket.TopicPartitionOffsetsEntry](#ma-streaming-open_data-v1-NewSessionPacket-TopicPartitionOffsetsEntry) | repeated | The offsets into each topic / partition (key is topic name, optionally appended with a &#39;:&#39; followed by the partition number) |
+| utc_offset | [google.protobuf.Duration](#google-protobuf-Duration) |  | Difference between UTC time and local standard time in the timezone in which the data is recorded (negative for negative longitudes, positive for positive longitudes) |
 
 
 
@@ -1425,6 +1501,7 @@ Wrapper for all packets
 | session_key | [string](#string) |  | Unique session key |
 | is_essential | [bool](#bool) |  | Is this packet essential? |
 | content | [bytes](#bytes) |  | Content |
+| id | [uint64](#uint64) |  | Id (optional if needed by default is 0) |
 
 
 
@@ -1596,6 +1673,23 @@ Session info
 | type | [string](#string) |  | Type |
 | version | [uint32](#uint32) |  | Version |
 | associate_session_keys | [string](#string) | repeated | Associate session keys |
+| details | [SessionInfoPacket.DetailsEntry](#ma-streaming-open_data-v1-SessionInfoPacket-DetailsEntry) | repeated | Session details (detail name, detail value) |
+
+
+
+
+
+
+<a name="ma-streaming-open_data-v1-SessionInfoPacket-DetailsEntry"></a>
+
+### SessionInfoPacket.DetailsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -1815,7 +1909,8 @@ Types of formula. Can be extended to support other languages in the future
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | FORMULA_TYPE_UNSPECIFIED | 0 | Unspecified |
-| FORMULA_TYPE_FDL | 1 | Mclaren Applied proprietary FDL, used for virtual parameters |
+| FORMULA_TYPE_FDL | 1 | Mclaren Applied proprietary FDL, used for virtual parameters with System Monitor |
+| FORMULA_TYPE_CSHARP | 2 | An open format translated from FDL to C# |
 
 
 
