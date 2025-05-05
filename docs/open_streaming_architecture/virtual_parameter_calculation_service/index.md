@@ -27,12 +27,21 @@ The service is designed as a container-native application with the following key
 ### Prerequisites
 
 - Docker runtime environment
-- Access to the Stream API
 - Prometheus (for monitoring)
 
 ### Running the Service
 
-The service is distributed as a Docker container. Detailed running instructions can be found in the [RUN.md](Run/RUN.md) file.
+The service is distributed as a Docker container and is available on Docker Hub:
+
+```bash
+docker pull mclarenapplied/virtual-parameter-service-host
+```
+
+The service can be run using:
+
+```bash
+docker run mclarenapplied/virtual-parameter-service-host
+```
 
 ## Monitoring
 
