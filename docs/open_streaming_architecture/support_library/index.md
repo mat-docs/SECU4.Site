@@ -6,9 +6,8 @@ The Support Library Service is a critical component of the SECU4 streaming archi
 
 The Support Library Service acts as an intermediary layer between the Stream API and data consumers, offering:
 
-- Real-time data buffering
-- Data interpolation
-- Flexible data processing
+- Buffering
+- Interpolation
 
 ## Architecture
 
