@@ -9,18 +9,12 @@ The Support Library Service acts as an intermediary layer between the Stream API
 - Real-time data buffering
 - Data interpolation
 - Flexible data processing
-- SQL Race integration
 
 ## Architecture
 
-```mermaid
-graph LR
-    A[Stream API] --> B[Support Library Service]
-    B --> C[Buffering Module]
-    B --> D[Interpolation Module]
-    C --> E[SQL Race]
-    D --> E
-```
+> **Note:** The gRPC interface for the Support Library is planned and will be implemented soon.
+
+![Support Library Architecture](./support_library_architecture.png)
 
 ## Key Features
 
@@ -176,13 +170,6 @@ Common issues and solutions:
    - Verify buffer configuration
    - Monitor system resources
 
-3. **SQL Race Integration Issues**
-   - Verify connection string
-   - Check parameter mappings
-   - Monitor session creation
-
 ## Related Components
 
 - [Stream API Documentation](../stream-api)
-- [SQL Race Integration](../sql-race)
-- [Data Processing Pipeline](../data-pipeline) 
