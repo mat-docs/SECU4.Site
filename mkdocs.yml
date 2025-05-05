@@ -55,6 +55,7 @@ nav:
         - Stream API Server:          open_streaming_architecture/stream_api/stream_server.md
         - Key Generator Service:      open_streaming_architecture/stream_api/key_generator.md
         - Sample Code:                https://github.com/mat-docs/MA.Streaming.Api.UsageSample
+      - Suppport Library:             open_streaming_architecture/support_library/index.md
       - Protocol Documentation:       open_streaming_architecture/docs.md
       - Open Source Repositories:     https://github.com/Software-Products
 
