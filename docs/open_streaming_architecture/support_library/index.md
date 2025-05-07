@@ -47,7 +47,11 @@ The interpolation module provides:
     - Minimum
     - Maximum
 - Custom processor support
+    - Linear interpolation
+    - Extensible processor interface
+    - Custom result handling
 - Configurable processing frequencies
+- Multiple simultaneous processors
 
 ## Configuration
 
@@ -127,6 +131,7 @@ var packetReadingConfig = new PacketReadingConfiguration(
 | `Streams` | List of streams to read from the broker |
  
 The session reading configuration allows you to:
+
 - Filter specific sessions using pattern matching
 - Choose between different reading types (e.g., Live)
 - Select specific streams to read from
@@ -170,6 +175,68 @@ Task.Run(() => supportLibApi.Start());
 supportLibApi.BufferingSubscribe(subscribedParameters);
 supportLibApi.InterpolationSubscribe(subscriptionKey, parameters, 2, handler, 2);
 ```
+### Custom Interpolation
+
+The Support Library allows you to create custom interpolation processors by implementing the `ISubscriptionProcessor` interface. Here's an example of implementing a linear interpolation processor:
+
+```csharp
+// Custom processor implementation
+public class LinearInterpolationProcessor : ISubscriptionProcessor
+{
+    private readonly ulong interpolationPeriod;
+    
+    public LinearInterpolationProcessor(ulong interpolationPeriodNano)
+    {
+        this.interpolationPeriod = interpolationPeriodNano;
+    }
+    
+    public IProcessResult Process(ProcessContext context)
+    {
+        // Implementation of linear interpolation logic
+    }
+}
+
+// Custom result implementation
+public class LinearInterpolationResult : IProcessResult
+{
+    public string Identifier { get; }
+    public ulong IntervalStartTimeNano { get; }
+    public ulong IntervalEndTimeNano { get; }
+    public IList<double> InterpolatedSamples { get; }
+    public IList<ulong> Timestamps { get; }
+}
+
+// Usage example
+var interpolationInterval = 2000000UL; // 500 Hz
+var subscriptionKeyLinearInterpolation = Guid.NewGuid().ToString();
+var linearInterpolationProcessor = new LinearInterpolationProcessor(interpolationInterval);
+var linearInterpolationHandler = new LinearInterpolationHandler(subscriptionKeyLinearInterpolation, sqlSessionManager);
+
+// Subscribe with custom processor
+supportLibApi.InterpolationSubscribe(
+    subscriptionKeyLinearInterpolation,
+    subscribedParameters,
+    2,
+    linearInterpolationHandler,
+    2,
+    linearInterpolationProcessor);
+```
+#### Custom Processor Requirements
+
+1. **Processor Implementation**:
+   * Must implement `ISubscriptionProcessor`
+   * Define interpolation logic in the `Process` method
+   * Handle data points and timestamps appropriately
+
+2. **Result Implementation**:
+   * Must implement `IProcessResult`
+   * Include necessary metadata (Identifier, timestamps)
+   * Store interpolated values and their timestamps
+
+3. **Handler Implementation**:
+   * Must implement `IBatchResultHandler`
+   * Process and store results appropriately
+   * Handle subscription key validation
 
 ## Troubleshooting
 
@@ -187,4 +254,4 @@ Common issues and solutions:
 
 ## Related Components
 
-- [Stream API Documentation](../stream-api)
+- [Stream API Documentation](../stream_api)
