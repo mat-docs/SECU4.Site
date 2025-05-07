@@ -6,6 +6,7 @@ The Support Library Service is a critical component of the SECU4 streaming archi
 
 The Support Library Service acts as an intermediary layer between the Stream API and data consumers, offering:
 
+- Reading 
 - Buffering
 - Interpolation
 
@@ -25,10 +26,10 @@ The buffering module provides two distinct data handling approaches:
 - Single parameter per `SampleData` object
 - Multiple samples and timestamps per parameter
 - Supports various data types:
-  - Events
-  - Markers
-  - CAN Data
-  - Errors
+    - Events
+    - Markers
+    - CAN Data
+    - Errors
 
 #### Timestamp Data Buffering
 - Multiple parameters per timestamp
@@ -40,11 +41,11 @@ The buffering module provides two distinct data handling approaches:
 The interpolation module provides:
 
 - Default statistical processing:
-  - First value
-  - Last value
-  - Mean
-  - Minimum
-  - Maximum
+    - First value
+    - Last value
+    - Mean
+    - Minimum
+    - Maximum
 - Custom processor support
 - Configurable processing frequencies
 
@@ -105,33 +106,48 @@ var streamApiConfig = new StreamingApiConfiguration(
     new List<string>()
 );
 ```
-
-### SQL Race Integration
-
+### Session Reading Configuration
+ 
+The Support Library provides robust session reading capabilities from the broker through the `PacketReadingConfiguration`:
+ 
 ```csharp
-var sqlSessionManager = new SqlSessionManager(
-    connectionString,
-    subscribedParameters,
-    logger
-);
+var packetReadingConfig = new PacketReadingConfiguration(
+    sessionIdentifierPattern: "*",  // Matches all sessions
+    readingType: ReadingType.Live,
+    streams: new List<string>
+    {
+        "Chassis"  // Example stream
+    });
 ```
-
+ 
+| Parameter | Description |
+|-----------|-------------|
+| `SessionIdentifierPattern` | Pattern to match session identifiers (e.g., "*" for all sessions) |
+| `ReadingType` | Type of reading (e.g., Live) |
+| `Streams` | List of streams to read from the broker |
+ 
+The session reading configuration allows you to:
+- Filter specific sessions using pattern matching
+- Choose between different reading types (e.g., Live)
+- Select specific streams to read from
+- Integrate with the buffering and interpolation modules for data processing
+  
 ## Best Practices
 
 1. **Buffering Configuration**
-   - Adjust window length based on data rate
-   - Consider memory usage when including additional data types
-   - Monitor system performance with different sliding window percentages
+     - Adjust window length based on data rate
+     - Consider memory usage when including additional data types
+     - Monitor system performance with different sliding window percentages
 
 2. **Interpolation Configuration**
-   - Match frequencies to data requirements
-   - Consider system resources when processing multiple parameters
-   - Use appropriate handlers for different data types
+     - Match frequencies to data requirements
+     - Consider system resources when processing multiple parameters
+     - Use appropriate handlers for different data types
 
 3. **Error Handling**
-   - Implement proper error logging
-   - Handle connection failures gracefully
-   - Monitor buffer overflow conditions
+     - Implement proper error logging
+     - Handle connection failures gracefully
+     - Monitor buffer overflow conditions
 
 ## Example Usage
 
@@ -160,14 +176,14 @@ supportLibApi.InterpolationSubscribe(subscriptionKey, parameters, 2, handler, 2)
 Common issues and solutions:
 
 1. **High Memory Usage**
-   - Reduce buffering window length
-   - Filter subscribed parameters
-   - Adjust sliding window percentage
+     - Reduce buffering window length
+     - Filter subscribed parameters
+     - Adjust sliding window percentage
 
-2. **Data Latency**
-   - Check Stream API connection
-   - Verify buffer configuration
-   - Monitor system resources
+3. **Data Latency**
+     - Check Stream API connection
+     - Verify buffer configuration
+     - Monitor system resources
 
 ## Related Components
 
